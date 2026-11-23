@@ -21,5 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # # URL config
     # points to challenges URL to parse the URL after challenges/
-    path("challenges/", include("challenges.urls"))
+    path("challenge/", include("challenges.urls"))
 ]

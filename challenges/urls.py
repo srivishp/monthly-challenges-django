@@ -8,6 +8,7 @@ urlpatterns = [
     # and converts them into specific Python data types before passing them to a view.
     # ? You define them inside angle brackets using the <converter:variable_name> syntax within your urls.py file.
     path("<int:month>", views.monthly_challenges_by_number),
-    path("<str:month>", views.monthly_challenges),
+    # Naming a URL
+    path("<str:month>", views.monthly_challenges, name="month-challenge"),
 
 ]
