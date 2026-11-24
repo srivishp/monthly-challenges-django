@@ -1,28 +1,44 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-# Create your views here.
 
 monthly_challenge_list = {
-    "january": "Challenge 1",
-    "february": "Challenge 2",
-    "march": "Challenge 3",
-    "april": "Challenge 4",
-    "may": "Challenge 5",
-    "june": "Challenge 6",
-    "july": "Challenge 7",
-    "august": "Challenge 8",
-    "september": "Challenge 9",
-    "october": "Challenge 10",
-    "november": "Challenge 11",
-    "december": "Challenge 12",
+    "january": "Challenge 1 for Jan",
+    "february": "Challenge 2 for Feb",
+    "march": "Challenge 3 for Mar",
+    "april": "Challenge 4 for Apr",
+    "may": "Challenge 5 for May",
+    "june": "Challenge 6 for Jun",
+    "july": "Challenge 7 for Jul",
+    "august": "Challenge 8 for Aug",
+    "september": "Challenge 9 for Sep",
+    "october": "Challenge 10 for Oct",
+    "november": "Challenge 11 for Nov",
+    "december": "Challenge 12 for Dec",
 }
+# Create your views here.
+
+# > In this function we are dynamically creating a list using HTML, reverse functions & f-strings.
+# We should also add this index function the urls.py
+# * The below HTML will be rendered on localhost:8000/challenge
+
+
+def index(request):
+
+    list_items = ""
+    months = list(monthly_challenge_list.keys())
+    for month in months:
+        capitalized_month = month.capitalize()
+        month_path = reverse("month-challenge", args=[month])
+        list_items += f"<li><a href='{month_path}'> {capitalized_month}</a></li>"
+
+    response_data = f"<ul>{list_items}</ul>"
+    return HttpResponse(response_data)
+
 
 # In this function, we are forwarding/redirecting the numbers of months to the challenges
 # * The month in the argument will be the index of the above dict, because since Python 3.6 all dicts are now ordered by default.
 # We're taking advantage of that.
-
-
 def monthly_challenges_by_number(request, month):
     months = list(monthly_challenge_list.keys())
 
@@ -43,6 +59,7 @@ def monthly_challenges_by_number(request, month):
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenge_list[month]
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>Challenge for this month is: {challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("404: Month not found")
+        return HttpResponseNotFound("<h1>404: Month not found</h1>")

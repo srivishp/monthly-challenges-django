@@ -7,6 +7,7 @@ urlpatterns = [
     # A Django URL path converter captures dynamic segments from a URL pattern, validates their format,
     # and converts them into specific Python data types before passing them to a view.
     # ? You define them inside angle brackets using the <converter:variable_name> syntax within your urls.py file.
+    path("", views.index),
     path("<int:month>", views.monthly_challenges_by_number),
     # Naming a URL
     path("<str:month>", views.monthly_challenges, name="month-challenge"),
