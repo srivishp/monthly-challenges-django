@@ -29,7 +29,10 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# > We must officially let Django know about our apps(subfolders/modules)
+# Only then we can use them, especially to use templates
+# * Here, we are adding challenges.
+#! Using DIRS is not a recommended practice. We should always register in INSTALLED_APPS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'challenges'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,11 @@ ROOT_URLCONF = 'monthly_challenges.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # * See Line 35 for comment explanation
+            # BASE_DIR/"challenges"/"templates"
+        ],
+        # For APP_DIRS to work, we need to register our apps in the INSTALLED_APPS section
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
