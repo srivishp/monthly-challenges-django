@@ -12,11 +12,24 @@ This tells Django that this template exits in this directory
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monthly Challenge</title>
+    {% comment %}
+    The pipe operator with title is a filter that captializes words
+    Data formatting must preferrably be done in the template rather than the view
+    {% endcomment %}
+    <title>{{month_name | title}}'s Challenge</title>
 </head>
 
 <body>
-    <h1>Sample challenge</h1>
+    <h1>This is a sample challenge for the month of {{month_name | title}}</h1>
+
+
+    {% comment %}
+    The curly braces {{}} below is a syntax recognized by Django for variables
+    Here, we are rendering challenge_text from views.py
+    {% endcomment %}
+
+
+    <h2>{{ text }}</h2>
 </body>
 
 </html>

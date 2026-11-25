@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-# Line below helps render HTML
-from django.template.loader import render_to_string
+# Line below helps renders to string, but we will be using render on line 1
+# from django.template.loader import render_to_string
 
 monthly_challenge_list = {
     "january": "Challenge 1 for Jan",
@@ -61,8 +61,16 @@ def monthly_challenges_by_number(request, month):
 def monthly_challenges(request, month):
     try:
         challenge_text = monthly_challenge_list[month]
+        # * render() requires request as an arg
         # The path below affects the path in settings.py after BASE_DIR, so be mindful about it.
-        response_data = render_to_string("challenges/challenge.html")
-        return HttpResponse(response_data)
+        # # We are also going to expose variables (KVP) as another argument to be used in HTML, via Django Templating Language (DTL)
+        return render(request, "challenges/challenge.html", {
+            "month_name": month,
+            "text": challenge_text
+        })
+
+        # The path below affects the path in settings.py after BASE_DIR, so be mindful about it.
+        # response_data = render_to_string("challenges/challenge.html")
+        # return HttpResponse(response_data)
     except:
         return HttpResponseNotFound("<h1>404: Month not found</h1>")
