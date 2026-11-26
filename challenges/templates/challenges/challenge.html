@@ -13,23 +13,24 @@ This tells Django that this template exits in this directory
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% comment %}
-    The pipe operator with title is a filter that captializes words
-    Data formatting must preferrably be done in the template rather than the view
+
+    > The curly braces {{}} below is a syntax recognized by Django for variables
+    > Here, we are rendering challenge_text from views.py
+
+    ? The pipe operator with title is a filter that captializes words
+    ? Data formatting must preferrably be done in the template rather than the view
+
     {% endcomment %}
     <title>{{month_name | title}}'s Challenge</title>
 </head>
 
 <body>
     <h1>This is a sample challenge for the month of {{month_name | title}}</h1>
+{% if text is not None%}
+<h2>{{text}}</h2>
+{%else%}
+<p>No challenge yet!</p>
 
-
-    {% comment %}
-    The curly braces {{}} below is a syntax recognized by Django for variables
-    Here, we are rendering challenge_text from views.py
-    {% endcomment %}
-
-
-    <h2>{{ text }}</h2>
+{%endif%}
 </body>
-
 </html>

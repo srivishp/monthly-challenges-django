@@ -8,7 +8,9 @@
 <body>
     <ul>
         {% for month in months %}
-        {% comment %} # Dynamic URL in the template can be done using the url tag {% endcomment %}
+        {% comment %}
+        # Dynamic URL in the template can be done using the url tag
+        {% endcomment %}
         <li>
             <a href="{% url 'month-challenge' month %}"> {{month | title}}
             </a>
