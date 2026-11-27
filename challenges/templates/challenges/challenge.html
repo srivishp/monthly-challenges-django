@@ -1,17 +1,15 @@
-<!--
+{%extends "base.html" %}
+
+
+{% comment %}
 This file is a HTML template where we'll be writing the HTML structure for the website.
 We generally do not use inline HTML in web apps, as you probably know by now.
 
 We have to add this file (and filepath) in the settings.py in monthly_challenges folder
-This tells Django that this template exits in this directory
--->
+This tells Django that this template exits in this directory {% endcomment %}
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     {% comment %}
 
     > The curly braces {{}} below is a syntax recognized by Django for variables
@@ -21,10 +19,14 @@ This tells Django that this template exits in this directory
     ? Data formatting must preferrably be done in the template rather than the view
 
     {% endcomment %}
-    <title>{{month_name | title}}'s Challenge</title>
-</head>
+    {% block page_title %}
+    {{month_name | title}}'s Challenge
+    {%endblock%}
 
-<body>
+{% block content %}
+{% comment %} include allows us to include another template {% endcomment %}
+{% include "challenges/includes/header.html"%}
+
     <h1>This is a sample challenge for the month of {{month_name | title}}</h1>
 {% if text is not None%}
 <h2>{{text}}</h2>
@@ -32,5 +34,4 @@ This tells Django that this template exits in this directory
 <p>No challenge yet!</p>
 
 {%endif%}
-</body>
-</html>
+{% endblock %}

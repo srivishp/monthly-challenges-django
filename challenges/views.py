@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 # Line below helps renders to string, but we will be using render on line 1
 # from django.template.loader import render_to_string
@@ -69,4 +69,6 @@ def monthly_challenges(request, month):
         # response_data = render_to_string("challenges/challenge.html")
         # return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("<h1>404: Month not found</h1>")
+        # > This built in import searches for a 404 file in the templates folder
+        # Must change debug to false in settings.py to see the 404 in dev mode. That should be done only in prod.
+        raise Http404()

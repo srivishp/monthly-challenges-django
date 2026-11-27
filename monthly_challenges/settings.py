@@ -61,6 +61,7 @@ TEMPLATES = [
         'DIRS': [
             # * See Line 35 for comment explanation
             # BASE_DIR/"challenges"/"templates"
+            BASE_DIR/"templates"
         ],
         # For APP_DIRS to work, we need to register our apps in the INSTALLED_APPS section
         'APP_DIRS': True,
