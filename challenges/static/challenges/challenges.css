@@ -1,0 +1,9 @@
+/*
+> Ensure that django.contrib.staticfiles is there in INSTALLED APPS in settings.py file
+Also check if STATIC_URL is also present (will be covered in later part of the course)
+*/
+
+ul {
+    list-style: none;
+
+}

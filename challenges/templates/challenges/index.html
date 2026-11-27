@@ -1,5 +1,11 @@
 {%extends "base.html" %}
+{%load static %}
 {% comment %} Here we are importing the template using extends {% endcomment %}
+{% comment %} load imports the static files, in our case CSS {% endcomment %}
+
+{%block css_files%}
+<link rel="stylesheet" href="{%static 'challenges/challenges.css'%}">
+{%endblock%}
 
 {%block page_title%}
 All Challenges

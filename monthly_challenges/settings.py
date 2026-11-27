@@ -124,7 +124,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+# > Below line is to specify static folders that Django should collect and use.
+# here we are using to load global CSS files
+STATICFILES_DIRS = [
+    BASE_DIR / "monthly_challenges" / "static"
+]
 
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
